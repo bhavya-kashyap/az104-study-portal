@@ -9,7 +9,7 @@
     1: {
       domain: 'D1',
       title: 'Course Orientation + Microsoft Entra ID Fundamentals',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/entra/fundamentals/whatis',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/',
       sections: [
         {
           title: 'AZ-104 Exam Overview',
@@ -26,6 +26,87 @@
 <p style="margin-top:12px"><strong>Format:</strong> 40–60 questions | 115 minutes | Passing score: 700/1000</p>
 <p style="margin-top:8px"><strong>Question types:</strong> Multiple choice, multi-select, drag-and-drop, case studies, and hot-area questions.</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Study tip:</strong> AZ-104 is heavily hands-on. After reading each concept, practice it in the <a href="https://portal.azure.com" target="_blank" rel="noopener">Azure free tier</a>. The exam tests applied knowledge, not just memorization.</span></div>`
+        },
+        {
+          title: 'Azure Cloud Shell — Your Admin Toolkit',
+          content: `
+<p><strong>Azure Cloud Shell</strong> is a browser-based, authenticated shell environment for managing Azure resources — no local installation required. This is covered in the official Microsoft Learn prerequisite module: <em>Introduction to Azure Cloud Shell</em>.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Shell Environments</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Environment</th><th style="padding:8px;text-align:left">Tools &amp; Use Case</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Bash</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Linux shell with Azure CLI (<code>az</code>), Python, Git, Terraform, Ansible. Best for scripting and cross-platform tasks.</td></tr>
+  <tr><td style="padding:8px"><strong>PowerShell</strong></td><td style="padding:8px">PowerShell 7+ with Az module pre-installed. Best for Windows-style cmdlets like <code>Get-AzVM</code>, <code>New-AzResourceGroup</code>.</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Access Points</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><strong>Azure Portal</strong> — Click the Cloud Shell icon (<code>&gt;_</code>) in the top navigation bar</li>
+  <li><strong>Direct URL</strong> — <a href="https://shell.azure.com" target="_blank" rel="noopener">shell.azure.com</a></li>
+  <li><strong>Azure Mobile App</strong> — Full Cloud Shell available on iOS and Android</li>
+  <li><strong>VS Code</strong> — Via the Azure Account extension</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Persistent Storage (Azure Files)</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li>Cloud Shell mounts an <strong>Azure Files share</strong> at <code>$HOME/clouddrive</code> for persistence across sessions</li>
+  <li>Your <code>$HOME</code> directory is a <strong>5 GB disk image</strong> stored in the file share — scripts, SSH keys, and configs are preserved</li>
+  <li>First launch prompts you to create or attach a storage account in a region you choose</li>
+  <li><strong>Ephemeral mode</strong> — Skip storage setup to get a temporary session; nothing is saved after the shell closes</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Built-in Tools (Pre-installed)</h4>
+<p style="font-size:14px">Azure CLI, Azure PowerShell (Az module), Terraform, Ansible, Git, Python, Node.js, .NET, Docker, kubectl, Helm, and the Monaco-based in-browser editor (launch with <code>code .</code>).</p>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Cloud Shell is <strong>authenticated automatically</strong> — no <code>az login</code> needed. The shell runs on a managed, temporary Linux container backed by Microsoft. Each session times out after 20 minutes of inactivity. Storage costs (Azure Files) apply to the underlying share.</span></div>`
+        },
+        {
+          title: 'ARM Templates — Infrastructure as Code Basics',
+          content: `
+<p><strong>Azure Resource Manager (ARM) templates</strong> are JSON files that declare the desired state of your Azure infrastructure. This is covered in the official Microsoft Learn prerequisite module: <em>Deploy Azure infrastructure by using JSON ARM templates</em>.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Template Structure</h4>
+<pre style="background:var(--bg-input);padding:14px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto">{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": { },
+  "variables": { },
+  "functions": [ ],
+  "resources": [ ],
+  "outputs": { }
+}</pre>
+<table style="width:100%;font-size:13px;border-collapse:collapse;margin-top:8px">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Section</th><th style="padding:8px;text-align:left">Purpose</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>$schema</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Identifies the template schema version for validation</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>contentVersion</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">User-defined version for change tracking (e.g., "1.0.0.0")</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>parameters</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Values supplied at deployment time — makes templates reusable (e.g., location, SKU)</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>variables</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Computed values used throughout the template to avoid repetition</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>functions</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Custom user-defined template functions for advanced reusability</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>resources</code></td><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Core section</strong> — defines which Azure resources to deploy and their configuration</td></tr>
+  <tr><td style="padding:8px"><code>outputs</code></td><td style="padding:8px">Values returned after deployment (e.g., resource ID, connection string)</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Deployment Modes</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Mode</th><th style="padding:8px;text-align:left">Behaviour</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Incremental</strong> (default)</td><td style="padding:8px;border-bottom:1px solid var(--border)">Adds / updates resources in the template. Resources <em>not in the template</em> that already exist are <strong>left unchanged</strong>.</td></tr>
+  <tr><td style="padding:8px"><strong>Complete</strong></td><td style="padding:8px">Makes the resource group look <em>exactly</em> like the template. Resources <em>not in the template</em> are <strong>deleted</strong>. Use with caution!</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Deploying a Template</h4>
+<pre style="background:var(--bg-input);padding:12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto"># Azure CLI
+az deployment group create \\
+  --resource-group myRG \\
+  --template-file azuredeploy.json \\
+  --parameters @azuredeploy.parameters.json
+
+# Azure PowerShell
+New-AzResourceGroupDeployment \`
+  -ResourceGroupName myRG \`
+  -TemplateFile azuredeploy.json \`
+  -TemplateParameterFile azuredeploy.parameters.json</pre>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Common Template Functions</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><code>parameters('name')</code> — Retrieve a parameter value</li>
+  <li><code>variables('name')</code> — Retrieve a variable value</li>
+  <li><code>concat('a', 'b')</code> — String concatenation</li>
+  <li><code>resourceId('type', 'name')</code> — Get resource ID for cross-resource references</li>
+  <li><code>uniqueString(resourceGroup().id)</code> — Deterministic hash for unique naming</li>
+  <li><code>resourceGroup().location</code> — Reference the deployment resource group's region</li>
+</ul>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> <strong>Incremental</strong> mode is the default and safest. <strong>Complete</strong> mode deletes resources not in the template — dangerous in production. ARM templates are <strong>idempotent</strong>: running the same template repeatedly produces the same result. Use <code>dependsOn</code> to control resource deployment order.</span></div>`
         },
         {
           title: 'Microsoft Entra ID — What It Is',
@@ -62,7 +143,7 @@
     2: {
       domain: 'D1',
       title: 'Users, Groups & Licenses in Microsoft Entra ID',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/entra/fundamentals/add-users-azure-active-directory',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/modules/manage-users-and-groups-in-aad/',
       sections: [
         {
           title: 'User Types',
@@ -99,6 +180,59 @@
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Dynamic groups require P1/P2. Can't manually add members to a Dynamic group. Group-based licensing (assign a licence to a group) requires P1. Nested groups are supported for M365 groups but not all RBAC scenarios.</span></div>`
         },
         {
+          title: 'Dynamic Group Rules — Syntax & Examples',
+          content: `
+<p>Dynamic membership rules automatically add or remove users/devices from groups based on attribute expressions. Rules use a PowerShell-like syntax evaluated continuously in the background.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Rule Syntax</h4>
+<pre style="background:var(--bg-input);padding:12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto"># Single condition
+(user.department -eq "Sales")
+
+# AND — both must be true
+(user.department -eq "Sales") -and (user.city -eq "London")
+
+# OR — either must be true
+(user.department -eq "IT") -or (user.department -eq "HR")
+
+# Target all guest (B2B) users
+(user.userType -eq "Guest")
+
+# Target guests from a specific domain
+(user.userType -eq "Guest") -and (user.mail -contains "@partner.com")
+
+# Dynamic device group — Azure AD joined Windows devices
+(device.deviceOSType -eq "Windows") -and (device.trustType -eq "AzureAD")</pre>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Common Attribute Operators</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Operator</th><th style="padding:8px;text-align:left">Meaning</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>-eq</code> / <code>-ne</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Equals / Not equals</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>-startsWith</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">String starts with value</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>-contains</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">String contains value (case-insensitive)</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>-match</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Regex match</td></tr>
+  <tr><td style="padding:8px"><code>-in</code> / <code>-notIn</code></td><td style="padding:8px">Value in / not in a list: <code>user.department -in ["Sales","IT"]</code></td></tr>
+</table>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Rule evaluation is asynchronous — changes can take minutes to propagate. Use <strong>Validate Rules</strong> in the portal to test before saving. Dynamic groups can't have manually added members. A group can be Dynamic User or Dynamic Device — not both.</span></div>`
+        },
+        {
+          title: 'Administrative Units & Delegated Administration',
+          content: `
+<p><strong>Administrative Units (AUs)</strong> partition your Entra ID tenant into logical sub-scopes (e.g., by department or region), enabling delegated administration without granting tenant-wide permissions. Requires <strong>P1</strong>.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">How AUs Work</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li>An AU contains users, groups, or devices</li>
+  <li>You assign scoped admin roles to principals <em>for that AU only</em> — e.g., a Helpdesk Administrator who can only reset passwords for users in the "EMEA" AU</li>
+  <li>AUs support <strong>dynamic membership</strong> (rule-based, like dynamic groups) — Requires P1</li>
+  <li>Adding a <em>group</em> to an AU scopes the group object itself, not the group's members</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Example Delegated Roles per AU</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Role Scoped to AU</th><th style="padding:8px;text-align:left">What They Can Do</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)">Helpdesk Administrator</td><td style="padding:8px;border-bottom:1px solid var(--border)">Reset passwords for AU members only</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)">User Administrator</td><td style="padding:8px;border-bottom:1px solid var(--border)">Create/update/delete users within AU only</td></tr>
+  <tr><td style="padding:8px">Groups Administrator</td><td style="padding:8px">Manage groups within AU only</td></tr>
+</table>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> AUs are for <em>directory role delegation</em>, not Azure RBAC. They limit which users/groups/devices an admin can manage — not what resources they can access. Global Admins always have full tenant scope regardless of AUs.</span></div>`
+        },
+        {
           title: 'Licence Assignment',
           content: `
 <p>Licences (Microsoft 365, Entra ID P1/P2, etc.) can be assigned:</p>
@@ -117,7 +251,7 @@
     3: {
       domain: 'D1',
       title: 'Authentication: MFA, SSPR & Conditional Access',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/modules/secure-aad-users-with-mfa/',
       sections: [
         {
           title: 'Multi-Factor Authentication (MFA)',
@@ -134,6 +268,19 @@
 <h4 style="margin:14px 0 8px;color:var(--azure-blue)">MFA Registration &amp; Per-User MFA</h4>
 <p style="font-size:14px">Per-user MFA is a legacy approach (enable/enforce MFA for specific users). The modern approach is <strong>Conditional Access policies</strong> (P1 required) or <strong>Security Defaults</strong> (free, but less configurable).</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Security Defaults = free MFA for all users, blocks legacy auth. Conditional Access = granular control (P1). You cannot have both Security Defaults AND Conditional Access enabled simultaneously.</span></div>`
+        },
+        {
+          title: 'Passwordless Authentication',
+          content: `
+<p>Passwordless methods replace passwords with something you <em>have</em> + something you <em>are</em>, eliminating credential theft risk. Managed via Entra ID → Authentication methods → Policies.</p>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Method</th><th style="padding:8px;text-align:left">How It Works</th><th style="padding:8px;text-align:left">Phishing-Resistant?</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>FIDO2 Security Keys</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Hardware key (e.g., YubiKey) with cryptographic challenge. User taps key + PIN/biometric.</td><td style="padding:8px;border-bottom:1px solid var(--border)">✅ Yes — private key never leaves device</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Windows Hello for Business</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Device-bound biometric (face/fingerprint) or PIN protected by TPM chip.</td><td style="padding:8px;border-bottom:1px solid var(--border)">✅ Yes — device-bound credentials</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Microsoft Authenticator (Passwordless)</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Push notification + biometric/PIN on phone. Number matching required.</td><td style="padding:8px;border-bottom:1px solid var(--border)">⚠️ Partial</td></tr>
+  <tr><td style="padding:8px"><strong>Certificate-Based Auth (CBA)</strong></td><td style="padding:8px">X.509 certificate on smart card or device. Used for PIV/CAC compliance requirements.</td><td style="padding:8px">✅ Yes</td></tr>
+</table>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> FIDO2 and WHfB are the strongest passwordless options — both are phishing-resistant. Conditional Access can enforce <strong>Authentication Strength</strong> policies to require phishing-resistant MFA for sensitive resources. Passwordless sign-in for FIDO2 is supported on Azure AD-joined and Hybrid Azure AD-joined devices.</span></div>`
         },
         {
           title: 'Self-Service Password Reset (SSPR)',
@@ -177,6 +324,26 @@
   <li>Block access</li>
 </ul>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Always test CA policies in <strong>Report-only mode</strong> first — never deploy directly to production. CA policies do NOT apply to the Break Glass (emergency access) accounts. Named locations use IP ranges or country/region GPS lookup.</span></div>`
+        },
+        {
+          title: 'Conditional Access — Named Locations & Session Controls',
+          content: `
+<h4 style="margin:0 0 8px;color:var(--azure-blue)">Named Locations</h4>
+<p style="font-size:14px">Named locations define trusted or untrusted network boundaries used as Conditional Access signals.</p>
+<table style="width:100%;font-size:13px;border-collapse:collapse;margin-bottom:12px">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Type</th><th style="padding:8px;text-align:left">How Defined</th><th style="padding:8px;text-align:left">Use Case</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>IP ranges</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">IPv4/IPv6 CIDR blocks; mark as "Trusted"</td><td style="padding:8px;border-bottom:1px solid var(--border)">Corporate network / VPN exit IPs</td></tr>
+  <tr><td style="padding:8px"><strong>Countries / Regions</strong></td><td style="padding:8px">GPS-based geolocation lookup</td><td style="padding:8px">Block sign-ins from specific countries</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Session Controls</h4>
+<p style="font-size:14px">Session controls (in Conditional Access → Session) limit what users can do <em>during</em> a session, not just at sign-in:</p>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><strong>Sign-in frequency</strong> — Re-authenticate every N hours (e.g., 1 hour for high-risk apps)</li>
+  <li><strong>Persistent browser session</strong> — Control whether browser sessions stay signed in</li>
+  <li><strong>App-enforced restrictions</strong> — Pass device state to SharePoint/Exchange for limited access (view-only, no download) on unmanaged devices</li>
+  <li><strong>Continuous Access Evaluation (CAE)</strong> — Real-time token revocation when user is disabled or location changes mid-session</li>
+</ul>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Use <strong>app-enforced restrictions</strong> to give unmanaged devices read-only access to SharePoint without blocking them entirely. Sign-in frequency forces re-auth but does NOT end the session. Marking a location as "Trusted" can exclude it from MFA requirements in CA policies.</span></div>`
         }
       ]
     },
@@ -185,7 +352,7 @@
     4: {
       domain: 'D1',
       title: 'Azure RBAC — Roles, Scopes & Custom Roles',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/azure/role-based-access-control/overview',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/',
       sections: [
         {
           title: 'RBAC Fundamentals',
@@ -237,6 +404,34 @@
   <li>Create via: Azure Portal, Azure CLI, PowerShell, or ARM template</li>
 </ul>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> <code>notActions</code> ≠ Deny — it just subtracts from Actions in the same role definition. A separate Deny Assignment still wins. dataActions / notDataActions control access to storage data, not management plane.</span></div>`
+        },
+        {
+          title: 'Managed Identities & Service Principals',
+          content: `
+<p>Instead of storing credentials in code, give Azure resources a <strong>managed identity</strong> so they can authenticate to other services automatically. Azure rotates the credentials behind the scenes — no secrets to manage.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">System-Assigned vs. User-Assigned</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Property</th><th style="padding:8px;text-align:left">System-Assigned</th><th style="padding:8px;text-align:left">User-Assigned</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Creation</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Enabled directly on a resource (VM, App Service, etc.)</td><td style="padding:8px;border-bottom:1px solid var(--border)">Created as a standalone Azure resource first</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Lifecycle</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Deleted automatically when the resource is deleted</td><td style="padding:8px;border-bottom:1px solid var(--border)">Independent — persists even if attached resources are deleted</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Sharing</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">1:1 with resource — can't be shared</td><td style="padding:8px;border-bottom:1px solid var(--border)">Can be attached to multiple resources simultaneously</td></tr>
+  <tr><td style="padding:8px"><strong>Best for</strong></td><td style="padding:8px">Simple single-resource scenarios, ephemeral workloads</td><td style="padding:8px">Shared permissions across a fleet of VMs or services</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Service Principal vs. Managed Identity</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><strong>Service Principal</strong> — App identity with manually managed secrets/certificates. Used when the workload runs <em>outside</em> Azure (on-prem CI/CD pipelines, third-party tools) or needs full credential control.</li>
+  <li><strong>Managed Identity</strong> — A special type of service principal whose credentials are <em>managed by Azure</em>. Only available for Azure-hosted workloads. No secrets needed in code.</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Common Pattern</h4>
+<pre style="background:var(--bg-input);padding:12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto"># Enable system-assigned managed identity on a VM (Azure CLI)
+az vm identity assign --name myVM --resource-group myRG
+
+# Grant the identity a role on a Key Vault
+az role assignment create \
+  --assignee-object-id &lt;identityPrincipalId&gt; \
+  --role "Key Vault Secrets User" \
+  --scope /subscriptions/{subId}/resourceGroups/myRG/providers/Microsoft.KeyVault/vaults/myKV</pre>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Managed identities are the <strong>recommended way</strong> to authenticate from Azure services — avoid storing credentials in code or config files. Assigning a role to a managed identity follows exactly the same RBAC process as for users. User-assigned identities survive resource deletion; system-assigned ones do not.</span></div>`
         }
       ]
     },
@@ -245,7 +440,7 @@
     5: {
       domain: 'D1',
       title: 'Azure Policy, Initiatives & Compliance',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/azure/governance/policy/overview',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/modules/build-cloud-governance-strategy-azure/',
       sections: [
         {
           title: 'Azure Policy Fundamentals',
@@ -258,6 +453,47 @@
 </ul>
 <p><strong>Example:</strong> RBAC allows a user to create a VM. Policy enforces that VMs must be in a specific region or SKU.</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Policies don't restrict actions by identity — they restrict resource configurations. Policy evaluation happens during resource creation and can be triggered manually via compliance scan.</span></div>`
+        },
+        {
+          title: 'Policy Definition JSON Structure',
+          content: `
+<p>Every Azure Policy is a JSON document with a <code>policyRule</code> that uses <code>if</code>/<code>then</code> logic.</p>
+<pre style="background:var(--bg-input);padding:14px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto">{
+  "properties": {
+    "displayName": "Allowed locations",
+    "description": "Restricts deployment to approved regions.",
+    "mode": "Indexed",
+    "parameters": {
+      "allowedLocations": {
+        "type": "Array",
+        "metadata": { "displayName": "Allowed Locations" },
+        "defaultValue": ["eastus", "westeurope"]
+      }
+    },
+    "policyRule": {
+      "if": {
+        "not": {
+          "field": "location",
+          "in": "[parameters('allowedLocations')]"
+        }
+      },
+      "then": { "effect": "deny" }
+    }
+  }
+}</pre>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Logical Operators</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Operator</th><th style="padding:8px;text-align:left">Meaning</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>allOf</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">AND — all conditions must be true</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>anyOf</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">OR — at least one condition must be true</td></tr>
+  <tr><td style="padding:8px"><code>not</code></td><td style="padding:8px">Negates the nested condition</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Mode Values</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><code>Indexed</code> — Evaluates only resource types that support tags and location (most common)</li>
+  <li><code>All</code> — Evaluates all resource types including resource groups and subscriptions</li>
+</ul>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Common condition operators: <code>equals</code>, <code>notEquals</code>, <code>in</code>, <code>notIn</code>, <code>contains</code>, <code>exists</code>, <code>like</code>. Use <code>parameters()</code> function to make policies reusable. The <code>field</code> keyword references resource properties (e.g., <code>location</code>, <code>type</code>, <code>tags[CostCenter]</code>).</span></div>`
         },
         {
           title: 'Policy Effects',
@@ -287,6 +523,29 @@
 <h4 style="margin:14px 0 8px;color:var(--azure-blue)">Compliance View</h4>
 <p style="font-size:14px">Azure Policy → Compliance shows per-resource, per-policy compliance state. States: Compliant, Non-compliant, Not started, Exempt.</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Policies with Audit effect do NOT prevent resource creation — they only log non-compliance. Existing resources are not evaluated retroactively until you trigger a compliance scan or remediation. Policy compliance can take up to 30 minutes to update.</span></div>`
+        },
+        {
+          title: 'Exemptions & Remediation Tasks',
+          content: `
+<h4 style="margin:0 0 8px;color:var(--azure-blue)">Policy Exemptions</h4>
+<p style="font-size:14px">Exemptions exclude specific resources from a policy assignment without changing the policy itself. Managed under Policy → Assignments → Exemptions.</p>
+<table style="width:100%;font-size:13px;border-collapse:collapse;margin-bottom:12px">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Category</th><th style="padding:8px;text-align:left">Meaning</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Waiver</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">The resource is acknowledged as non-compliant but accepted (business risk accepted)</td></tr>
+  <tr><td style="padding:8px"><strong>Mitigated</strong></td><td style="padding:8px">Compliance is achieved through an alternative method not captured by the policy</td></tr>
+</table>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li>Exemptions can have an <strong>expiration date</strong> — they auto-expire and the resource returns to evaluation</li>
+  <li>Exemptions are visible in the Compliance dashboard with state "Exempt"</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Remediation Tasks</h4>
+<p style="font-size:14px">For <strong>DeployIfNotExists</strong> and <strong>Modify</strong> effects, remediation tasks apply the policy's correction to <em>existing</em> non-compliant resources (new resources are fixed automatically at creation).</p>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li>Triggered manually from Policy → Compliance → Create Remediation Task, or automatically on assignment</li>
+  <li>Require a <strong>Managed Identity</strong> on the policy assignment with sufficient RBAC permissions</li>
+  <li>Track remediation progress in Policy → Remediation</li>
+</ul>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Exemptions ≠ Exclusions. An <em>Exclusion</em> is set on the assignment and applies to a scope (child resource group/resource). An <em>Exemption</em> is a separate resource targeting a specific resource. Only DeployIfNotExists and Modify can trigger automatic remediation.</span></div>`
         }
       ]
     },
@@ -295,7 +554,7 @@
     6: {
       domain: 'D1',
       title: 'Resource Locks, Tags & Resource Groups',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/modules/control-and-organize-with-azure-resource-manager/',
       sections: [
         {
           title: 'Resource Locks',
@@ -335,6 +594,32 @@
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Tags on a Resource Group do NOT automatically apply to resources inside it. Tags are visible in cost analysis reports and can be used to filter Cost Management billing data.</span></div>`
         },
         {
+          title: 'Tagging Strategy & CLI/PowerShell Commands',
+          content: `
+<p>A consistent tagging taxonomy is key to governance, cost management, and automation at scale.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Recommended Tag Taxonomy</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Tag Key</th><th style="padding:8px;text-align:left">Purpose</th><th style="padding:8px;text-align:left">Example Value</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>Environment</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Lifecycle stage</td><td style="padding:8px;border-bottom:1px solid var(--border)">Production, Dev, Test</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>CostCenter</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Billing allocation</td><td style="padding:8px;border-bottom:1px solid var(--border)">CC-1001, Finance</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>Owner</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Responsible team/person</td><td style="padding:8px;border-bottom:1px solid var(--border)">team-platform@co.com</td></tr>
+  <tr><td style="padding:8px"><code>Application</code></td><td style="padding:8px">Workload or app name</td><td style="padding:8px">ECommerceAPI</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Tag Commands</h4>
+<pre style="background:var(--bg-input);padding:12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto"># Azure CLI — set tags on a resource group
+az group update --name myRG --tags Environment=Production CostCenter=CC1001
+
+# Azure CLI — merge tags (add without overwriting existing)
+az tag update --resource-id &lt;resourceId&gt; --operation Merge --tags Owner=ITOps
+
+# Azure PowerShell — set tags on a resource group
+Set-AzResourceGroup -Name "myRG" -Tag @{ Environment="Production"; CostCenter="CC1001" }
+
+# Azure PowerShell — add tags to a resource
+New-AzTag -ResourceId &lt;resourceId&gt; -Tag @{ Owner="ITOps"; Application="ECommerceAPI" }</pre>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> <code>az tag update --operation Merge</code> adds tags without deleting existing ones. <code>az group update --tags</code> <strong>replaces</strong> all tags on the resource group. Use Azure Policy with Modify/Append effects to enforce tags automatically rather than relying on manual tagging.</span></div>`
+        },
+        {
           title: 'Resource Groups',
           content: `
 <p><strong>Resource Groups</strong> are logical containers for grouping related Azure resources. Every resource must belong to exactly one resource group.</p>
@@ -348,6 +633,22 @@
 <h4 style="margin:14px 0 8px;color:var(--azure-blue)">Moving Resources</h4>
 <p style="font-size:14px">Use <code>Move-AzResource</code> (PowerShell) or the portal. Moving validates that the resource supports move and that the destination group supports it. The move is at the ARM level — the resource remains in its original region.</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Resource Group's region only stores metadata. Not all resources can be moved (e.g., some VMs, ExpressRoute circuits). Moving a resource to a new subscription requires Owner or Contributor on both source and destination.</span></div>`
+        },
+        {
+          title: 'Resource Group Design Patterns',
+          content: `
+<p>Choosing the right grouping strategy determines how easily you can manage lifecycle, access control, and cost allocation.</p>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Pattern</th><th style="padding:8px;text-align:left">Group resources by…</th><th style="padding:8px;text-align:left">Best for</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Lifecycle</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Same deployment / retirement cycle</td><td style="padding:8px;border-bottom:1px solid var(--border)">App tiers (frontend + backend + DB together)</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Environment</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Dev / Test / Prod</td><td style="padding:8px;border-bottom:1px solid var(--border)">Isolation between stages; different RBAC per env</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Ownership / Team</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Business unit or team</td><td style="padding:8px;border-bottom:1px solid var(--border)">Delegated RBAC; chargeback billing by team</td></tr>
+  <tr><td style="padding:8px"><strong>Geography</strong></td><td style="padding:8px">Azure region</td><td style="padding:8px">Compliance, data residency requirements</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Naming Convention</h4>
+<p style="font-size:14px">Microsoft recommends: <code>&lt;type&gt;-&lt;workload&gt;-&lt;env&gt;-&lt;region&gt;-&lt;instance&gt;</code></p>
+<p style="font-size:14px;font-family:'Fira Code',monospace;background:var(--bg-input);padding:8px;border-radius:4px">Example: rg-ecommerceapi-prod-eastus2-001</p>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Resource groups cannot be nested. A resource can only belong to one resource group at a time. The lifecycle pattern is most common — delete the resource group to clean up all its resources in one operation. RBAC and Locks assigned to a resource group apply to all resources within it.</span></div>`
         }
       ]
     },
