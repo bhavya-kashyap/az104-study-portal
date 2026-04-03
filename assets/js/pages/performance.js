@@ -56,7 +56,7 @@ Router.register('performance', () => {
         <td>${dom ? dom.name : r.domain}</td>
         <td>${r.score}/${r.total}</td>
         <td><span class="badge ${cls}">${r.pct}%</span></td>
-        <td style="color:${r.pct>=70?'#4caf50':'var(--azure-red)';}">${r.pct >= 70 ? '✅ Pass' : '❌ Below target'}</td>
+        <td style="color:${r.pct>=70?'#4caf50':'var(--azure-red)'}">${r.pct >= 70 ? '✅ Pass' : '❌ Below target'}</td>
       </tr>`;
     }).join('') || `<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:20px">No quizzes taken yet</td></tr>`;
 
