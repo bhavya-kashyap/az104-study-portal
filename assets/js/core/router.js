@@ -1,20 +1,38 @@
-// Import necessary dependencies
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CoursePage from '../pages/CoursePage';
-import HomePage from '../pages/HomePage';
-import NotFoundPage from '../pages/NotFoundPage';
+// Simple Client-Side Router for Single Page Application
+const Router = (() => {
+  const routes = {};
+  const container = document.getElementById('page-container');
 
-const AppRouter = () => {
-    return (
-        <Router>
-            <Switch>
-                <Route exact path='/' component={HomePage} />
-                <Route path='/courses' component={CoursePage} />
-                <Route component={NotFoundPage} />
-            </Switch>
-        </Router>
-    );
-};
+  return {
+    // Register a new page route
+    register: (name, handler) => {
+      routes[name] = handler;
+    },
 
-export default AppRouter;
+    // Navigate to a page
+    navigate: (pageName) => {
+      if (!routes[pageName]) {
+        console.error(`Page not found: ${pageName}`);
+        return;
+      }
+
+      // Update active nav item
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.page === pageName) {
+          item.classList.add('active');
+        }
+      });
+
+      // Render page content
+      try {
+        const html = routes[pageName]();
+        container.innerHTML = html;
+        window.updateSidebarProgress();
+      } catch (e) {
+        console.error(`Error rendering page ${pageName}:`, e);
+        container.innerHTML = `<div class="card"><p style="color:var(--azure-red)">Error loading page. Check console.</p></div>`;
+      }
+    }
+  };
+})();
