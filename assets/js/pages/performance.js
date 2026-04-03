@@ -193,7 +193,7 @@ window.confirmReset = function() {
       This cannot be undone.
     </p>
     <div class="flex-center gap-3">
-      <button class="btn btn-danger" onclick="localStorage.removeItem('az104_portal_v2');closeModal();Router.navigate('dashboard')">
+      <button class="btn btn-danger" onclick="localStorage.removeItem(Store.KEY);closeModal();Router.navigate('dashboard')">
         <i class="fas fa-trash"></i> Yes, Reset Everything
       </button>
       <button class="btn btn-outline" onclick="closeModal()">Cancel</button>

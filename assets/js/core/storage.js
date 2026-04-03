@@ -1,11 +1,22 @@
-// All persistence via localStorage
+// All persistence via localStorage, namespaced per user
 window.Store = {
-  KEY: 'az104_portal_v2',
+  get KEY() {
+    const session = Auth.getSession();
+    return session ? `az104_data_${session.username}` : 'az104_data_guest';
+  },
   get() {
     try { return JSON.parse(localStorage.getItem(this.KEY)) || this.defaults(); }
     catch(e) { return this.defaults(); }
   },
   save(data) { localStorage.setItem(this.KEY, JSON.stringify(data)); },
+  // Migrate legacy single-user data into the current user's namespace
+  migrateFromLegacy() {
+    const legacyKey = 'az104_portal_v2';
+    const legacy = localStorage.getItem(legacyKey);
+    if (legacy && !localStorage.getItem(this.KEY)) {
+      try { localStorage.setItem(this.KEY, legacy); } catch(e) {}
+    }
+  },
   defaults() {
     return {
       completedDays: [],

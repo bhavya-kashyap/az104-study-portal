@@ -1,10 +1,13 @@
 Router.register('dashboard', () => {
   const prog = Store.getProgress();
   const data = Store.get();
+  const user = Auth.getUser();
+  const firstName = user ? user.displayName.split(' ')[0] : 'Student';
   const today = new Date();
   const todayStr = today.toISOString().split('T')[0];
   const todaySchedule = COURSE_DATA.schedule.find(s => s.date === todayStr);
-  const daysLeft = Math.ceil((new Date('2026-06-02') - today) / 86400000);
+  const examDateStr = (user && user.examDate) ? user.examDate : '2026-06-02';
+  const daysLeft = Math.max(0, Math.ceil((new Date(examDateStr + 'T00:00:00') - today) / 86400000));
   const domScores = Store.getDomainScores();
   const avgScore = Object.values(domScores).filter(v=>v!==null);
   const avgPct = avgScore.length ? Math.round(avgScore.reduce((a,b)=>a+b,0)/avgScore.length) : 0;
@@ -44,7 +47,7 @@ Router.register('dashboard', () => {
 
   return `<div class="fade-in">
     <div class="page-header">
-      <div class="page-title">👋 Welcome back, Bhavya!</div>
+      <div class="page-title">👋 Welcome back, ${firstName}!</div>
       <div class="page-subtitle">AZ-104 Azure Administrator — 60-Day Study Portal</div>
     </div>
     <div class="grid-4">
