@@ -9,7 +9,7 @@
     1: {
       domain: 'D1',
       title: 'Course Orientation + Microsoft Entra ID Fundamentals',
-      msLearnUrl: 'https://learn.microsoft.com/en-us/entra/fundamentals/whatis',
+      msLearnUrl: 'https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/',
       sections: [
         {
           title: 'AZ-104 Exam Overview',
@@ -26,6 +26,87 @@
 <p style="margin-top:12px"><strong>Format:</strong> 40–60 questions | 115 minutes | Passing score: 700/1000</p>
 <p style="margin-top:8px"><strong>Question types:</strong> Multiple choice, multi-select, drag-and-drop, case studies, and hot-area questions.</p>
 <div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Study tip:</strong> AZ-104 is heavily hands-on. After reading each concept, practice it in the <a href="https://portal.azure.com" target="_blank" rel="noopener">Azure free tier</a>. The exam tests applied knowledge, not just memorization.</span></div>`
+        },
+        {
+          title: 'Azure Cloud Shell — Your Admin Toolkit',
+          content: `
+<p><strong>Azure Cloud Shell</strong> is a browser-based, authenticated shell environment for managing Azure resources — no local installation required. This is covered in the official Microsoft Learn prerequisite module: <em>Introduction to Azure Cloud Shell</em>.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Shell Environments</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Environment</th><th style="padding:8px;text-align:left">Tools &amp; Use Case</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Bash</strong></td><td style="padding:8px;border-bottom:1px solid var(--border)">Linux shell with Azure CLI (<code>az</code>), Python, Git, Terraform, Ansible. Best for scripting and cross-platform tasks.</td></tr>
+  <tr><td style="padding:8px"><strong>PowerShell</strong></td><td style="padding:8px">PowerShell 7+ with Az module pre-installed. Best for Windows-style cmdlets like <code>Get-AzVM</code>, <code>New-AzResourceGroup</code>.</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Access Points</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><strong>Azure Portal</strong> — Click the Cloud Shell icon (<code>&gt;_</code>) in the top navigation bar</li>
+  <li><strong>Direct URL</strong> — <a href="https://shell.azure.com" target="_blank" rel="noopener">shell.azure.com</a></li>
+  <li><strong>Azure Mobile App</strong> — Full Cloud Shell available on iOS and Android</li>
+  <li><strong>VS Code</strong> — Via the Azure Account extension</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Persistent Storage (Azure Files)</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li>Cloud Shell mounts an <strong>Azure Files share</strong> at <code>$HOME/clouddrive</code> for persistence across sessions</li>
+  <li>Your <code>$HOME</code> directory is a <strong>5 GB disk image</strong> stored in the file share — scripts, SSH keys, and configs are preserved</li>
+  <li>First launch prompts you to create or attach a storage account in a region you choose</li>
+  <li><strong>Ephemeral mode</strong> — Skip storage setup to get a temporary session; nothing is saved after the shell closes</li>
+</ul>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Built-in Tools (Pre-installed)</h4>
+<p style="font-size:14px">Azure CLI, Azure PowerShell (Az module), Terraform, Ansible, Git, Python, Node.js, .NET, Docker, kubectl, Helm, and the Monaco-based in-browser editor (launch with <code>code .</code>).</p>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> Cloud Shell is <strong>authenticated automatically</strong> — no <code>az login</code> needed. The shell runs on a managed, temporary Linux container backed by Microsoft. Each session times out after 20 minutes of inactivity. Storage costs (Azure Files) apply to the underlying share.</span></div>`
+        },
+        {
+          title: 'ARM Templates — Infrastructure as Code Basics',
+          content: `
+<p><strong>Azure Resource Manager (ARM) templates</strong> are JSON files that declare the desired state of your Azure infrastructure. This is covered in the official Microsoft Learn prerequisite module: <em>Deploy Azure infrastructure by using JSON ARM templates</em>.</p>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Template Structure</h4>
+<pre style="background:var(--bg-input);padding:14px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto">{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": { },
+  "variables": { },
+  "functions": [ ],
+  "resources": [ ],
+  "outputs": { }
+}</pre>
+<table style="width:100%;font-size:13px;border-collapse:collapse;margin-top:8px">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Section</th><th style="padding:8px;text-align:left">Purpose</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>$schema</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Identifies the template schema version for validation</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>contentVersion</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">User-defined version for change tracking (e.g., "1.0.0.0")</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>parameters</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Values supplied at deployment time — makes templates reusable (e.g., location, SKU)</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>variables</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Computed values used throughout the template to avoid repetition</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>functions</code></td><td style="padding:8px;border-bottom:1px solid var(--border)">Custom user-defined template functions for advanced reusability</td></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><code>resources</code></td><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Core section</strong> — defines which Azure resources to deploy and their configuration</td></tr>
+  <tr><td style="padding:8px"><code>outputs</code></td><td style="padding:8px">Values returned after deployment (e.g., resource ID, connection string)</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Deployment Modes</h4>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+  <tr style="background:var(--bg-input)"><th style="padding:8px;text-align:left">Mode</th><th style="padding:8px;text-align:left">Behaviour</th></tr>
+  <tr><td style="padding:8px;border-bottom:1px solid var(--border)"><strong>Incremental</strong> (default)</td><td style="padding:8px;border-bottom:1px solid var(--border)">Adds / updates resources in the template. Resources <em>not in the template</em> that already exist are <strong>left unchanged</strong>.</td></tr>
+  <tr><td style="padding:8px"><strong>Complete</strong></td><td style="padding:8px">Makes the resource group look <em>exactly</em> like the template. Resources <em>not in the template</em> are <strong>deleted</strong>. Use with caution!</td></tr>
+</table>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Deploying a Template</h4>
+<pre style="background:var(--bg-input);padding:12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto"># Azure CLI
+az deployment group create \\
+  --resource-group myRG \\
+  --template-file azuredeploy.json \\
+  --parameters @azuredeploy.parameters.json
+
+# Azure PowerShell
+New-AzResourceGroupDeployment \`
+  -ResourceGroupName myRG \`
+  -TemplateFile azuredeploy.json \`
+  -TemplateParameterFile azuredeploy.parameters.json</pre>
+<h4 style="margin:14px 0 8px;color:var(--azure-blue)">Common Template Functions</h4>
+<ul style="margin:0 0 12px 20px;line-height:2;font-size:14px">
+  <li><code>parameters('name')</code> — Retrieve a parameter value</li>
+  <li><code>variables('name')</code> — Retrieve a variable value</li>
+  <li><code>concat('a', 'b')</code> — String concatenation</li>
+  <li><code>resourceId('type', 'name')</code> — Get resource ID for cross-resource references</li>
+  <li><code>uniqueString(resourceGroup().id)</code> — Deterministic hash for unique naming</li>
+  <li><code>resourceGroup().location</code> — Reference the deployment resource group's region</li>
+</ul>
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Exam Tips:</strong> <strong>Incremental</strong> mode is the default and safest. <strong>Complete</strong> mode deletes resources not in the template — dangerous in production. ARM templates are <strong>idempotent</strong>: running the same template repeatedly produces the same result. Use <code>dependsOn</code> to control resource deployment order.</span></div>`
         },
         {
           title: 'Microsoft Entra ID — What It Is',
