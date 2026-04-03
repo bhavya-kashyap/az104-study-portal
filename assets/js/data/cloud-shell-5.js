@@ -1,5 +1,5 @@
 // Azure Cloud Shell Module — Unit 5: Knowledge Check
-// MS Learn: https://learn.microsoft.com/en-in/training/modules/intro-to-azure-cloud-shell/5-knowledge-check
+// MS Learn: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/5-knowledge-check
 // Maps to Schedule Day 5
 (function () {
   if (!window.STUDY_LESSONS) window.STUDY_LESSONS = {};

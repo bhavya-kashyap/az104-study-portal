@@ -1,5 +1,5 @@
 // Azure Cloud Shell Module — Unit 6: Summary
-// MS Learn: https://learn.microsoft.com/en-in/training/modules/intro-to-azure-cloud-shell/6-summary
+// MS Learn: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/6-summary
 // Maps to Schedule Day 6
 (function () {
   if (!window.STUDY_LESSONS) window.STUDY_LESSONS = {};

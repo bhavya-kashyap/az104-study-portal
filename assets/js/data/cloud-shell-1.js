@@ -1,5 +1,5 @@
 // Azure Cloud Shell Module — Unit 1: Introduction
-// MS Learn: https://learn.microsoft.com/en-in/training/modules/intro-to-azure-cloud-shell/1-introduction
+// MS Learn: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/1-introduction
 // Maps to Schedule Day 1
 (function () {
   if (!window.STUDY_LESSONS) window.STUDY_LESSONS = {};

@@ -1,5 +1,5 @@
 // Azure Cloud Shell Module — Unit 3: How Azure Cloud Shell Works
-// MS Learn: https://learn.microsoft.com/en-in/training/modules/intro-to-azure-cloud-shell/3-how-azure-cloud-shell-works
+// MS Learn: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/3-how-azure-cloud-shell-works
 // Maps to Schedule Day 3
 (function () {
   if (!window.STUDY_LESSONS) window.STUDY_LESSONS = {};

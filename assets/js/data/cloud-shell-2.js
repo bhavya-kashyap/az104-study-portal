@@ -1,5 +1,5 @@
 // Azure Cloud Shell Module — Unit 2: What is Azure Cloud Shell?
-// MS Learn: https://learn.microsoft.com/en-in/training/modules/intro-to-azure-cloud-shell/2-what-is-azure-cloud-shell
+// MS Learn: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/2-what-is-azure-cloud-shell
 // Maps to Schedule Day 2
 (function () {
   if (!window.STUDY_LESSONS) window.STUDY_LESSONS = {};
