@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AZ-104 Study Portal | Bhavya Kashyap</title>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="app">
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo"><i class="fab fa-microsoft"></i><span>AZ-104 Portal</span></div>
+      <div class="user-info">
+        <div class="avatar">BK</div>
+        <div><div class="user-name">Bhavya Kashyap</div><div class="user-exam">Exam: June 2, 2026</div></div>
+      </div>
+      <div id="countdown-mini" class="countdown-mini"></div>
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></li>
+      <li class="nav-item" data-page="schedule"><i class="fas fa-calendar-alt"></i><span>Study Schedule</span></li>
+      <li class="nav-item" data-page="modules"><i class="fas fa-book-open"></i><span>Course Modules</span></li>
+      <li class="nav-item" data-page="quiz"><i class="fas fa-question-circle"></i><span>Daily Quiz</span></li>
+      <li class="nav-item" data-page="exam"><i class="fas fa-graduation-cap"></i><span>Weekend Exams</span></li>
+      <li class="nav-item" data-page="performance"><i class="fas fa-chart-line"></i><span>Performance</span></li>
+      <li class="nav-item" data-page="readiness"><i class="fas fa-bullseye"></i><span>Exam Readiness</span></li>
+      <li class="nav-item" data-page="resources"><i class="fas fa-link"></i><span>Resources</span></li>
+    </ul>
+    <div class="sidebar-progress">
+      <div class="progress-label"><span>Course Progress</span><span id="sidebar-progress-pct">0%</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="sidebar-progress-bar"></div></div>
+    </div>
+  </nav>
+  <main id="main-content" class="main-content">
+    <div id="page-container"></div>
+  </main>
+</div>
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div id="modal-box" class="modal-box"></div>
+</div>
+<script src="assets/js/data/course-data.js"></script>
+<script src="assets/js/data/quiz-data.js"></script>
+<script src="assets/js/core/storage.js"></script>
+<script src="assets/js/core/router.js"></script>
+<script src="assets/js/pages/dashboard.js"></script>
+<script src="assets/js/pages/schedule.js"></script>
+<script src="assets/js/pages/modules.js"></script>
+<script src="assets/js/pages/quiz.js"></script>
+<script src="assets/js/pages/exam.js"></script>
+<script src="assets/js/pages/performance.js"></script>
+<script src="assets/js/pages/readiness.js"></script>
+<script src="assets/js/pages/resources.js"></script>
+<script src="assets/js/core/app.js"></script>
+</body>
+</html>
