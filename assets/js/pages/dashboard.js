@@ -5,7 +5,8 @@ Router.register('dashboard', () => {
   const firstName = user ? user.displayName.split(' ')[0] : 'Student';
   const today = new Date();
   const todayStr = today.toISOString().split('T')[0];
-  const todaySchedule = COURSE_DATA.schedule.find(s => s.date === todayStr);
+  const schedule = COURSE_DATA.getSchedule(user ? user.startDate : null);
+  const todaySchedule = schedule.find(s => s.date === todayStr);
   const examDateStr = (user && user.examDate) ? user.examDate : '2026-06-02';
   const daysLeft = Math.max(0, Math.ceil((new Date(examDateStr + 'T00:00:00') - today) / 86400000));
   const domScores = Store.getDomainScores();

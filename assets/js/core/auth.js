@@ -21,7 +21,7 @@ const Auth = (() => {
   }
 
   return {
-    async register(username, password, displayName, examDate) {
+    async register(username, password, displayName, examDate, startDate) {
       if (!username || !password || !displayName) return { ok: false, error: 'All fields are required.' };
       if (password.length < 6) return { ok: false, error: 'Password must be at least 6 characters.' };
       const users = getUsers();
@@ -34,6 +34,7 @@ const Auth = (() => {
         passwordHash: hash,
         displayName: displayName.trim(),
         examDate: examDate || '2026-06-02',
+        startDate: startDate || new Date().toISOString().split('T')[0],
         avatarColor: 'blue',
         joinedDate: new Date().toISOString(),
       };
