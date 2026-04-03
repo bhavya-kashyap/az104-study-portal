@@ -69,7 +69,7 @@ window.COURSE_DATA = {
     {day:57, date:'2026-05-29',dow:'Fri',type:'weekday',hours:1.5,domain:'ALL',topic:'Weak Area Deep Dive (based on your scores)',isExam:false},
     {day:58, date:'2026-05-30',dow:'Sat',type:'weekend',hours:3,  domain:'ALL',topic:'🎯 FULL MOCK EXAM 1 — 60 Questions All Domains',isExam:true},
     {day:59, date:'2026-05-31',dow:'Sun',type:'weekend',hours:3,  domain:'ALL',topic:'🎯 FULL MOCK EXAM 2 — 60 Questions All Domains',isExam:true},
-    {day:60, date:'2026-06-01',dow:'Mon',type:'weekday',domain:'ALL',topic:'✅ Final Review: Flash Cards, Rest Well. You Got This!',isExam:false},
+    {day:60, date:'2026-06-01',dow:'Mon',type:'weekday',hours:1.5,domain:'ALL',topic:'✅ Final Review: Flash Cards, Rest Well. You Got This!',isExam:false},
   ],
 
   // Returns the schedule with dates computed from the user's actual start date.

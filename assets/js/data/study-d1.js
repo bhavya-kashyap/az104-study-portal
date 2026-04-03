@@ -25,7 +25,7 @@
 </table>
 <p style="margin-top:12px"><strong>Format:</strong> 40–60 questions | 115 minutes | Passing score: 700/1000</p>
 <p style="margin-top:8px"><strong>Question types:</strong> Multiple choice, multi-select, drag-and-drop, case studies, and hot-area questions.</p>
-<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Study tip:</strong> AZ-104 is heavily hands-on. After reading each concept, practice it in the <a href="https://portal.azure.com" target="_blank" rel="noopener">Azure free tier</a>. The exam tests applied knowledge, not just memorisation.</span></div>`
+<div class="alert alert-warning mt-4"><i class="fas fa-star"></i><span><strong>🎯 Study tip:</strong> AZ-104 is heavily hands-on. After reading each concept, practice it in the <a href="https://portal.azure.com" target="_blank" rel="noopener">Azure free tier</a>. The exam tests applied knowledge, not just memorization.</span></div>`
         },
         {
           title: 'Microsoft Entra ID — What It Is',
