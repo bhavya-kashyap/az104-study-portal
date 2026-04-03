@@ -1,7 +1,6 @@
 // Simple Client-Side Router for Single Page Application
 const Router = (() => {
   const routes = {};
-  const container = document.getElementById('page-container');
 
   return {
     // Register a new page route
@@ -25,6 +24,7 @@ const Router = (() => {
       });
 
       // Render page content
+      const container = document.getElementById('page-container');
       try {
         const html = routes[pageName]();
         container.innerHTML = html;
