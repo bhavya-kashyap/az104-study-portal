@@ -202,7 +202,11 @@ hr{border:none;border-top:1px solid var(--border);margin:24px 0}
   .hamburger-btn{display:flex}
   .sidebar{transform:translateX(-100%);transition:transform .3s ease;z-index:120;width:260px}
   .sidebar.sidebar-open{transform:translateX(0)}
-  .sidebar .logo span,.sidebar .user-info div,.sidebar .nav-item span,.sidebar .countdown-mini,.sidebar .sidebar-progress,.sidebar-footer .sidebar-logout span,.version-current span,.version-current i:last-child{display:revert}
+  /* Restore elements hidden by the 900px icon-only rule */
+  .sidebar .logo span,.sidebar .nav-item span,.sidebar .countdown-mini,
+  .sidebar-footer .sidebar-logout span,.version-current span,.version-current i:last-child{display:inline}
+  .sidebar .sidebar-progress,.sidebar .user-info div{display:block}
+  .sidebar .avatar{display:flex}
   .sidebar .nav-item{justify-content:flex-start;padding:12px 20px}
   .sidebar-logout{justify-content:flex-start;padding:10px 20px}
   .version-badge{padding:10px 16px;text-align:left}.version-current{justify-content:flex-start}

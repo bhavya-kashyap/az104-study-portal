@@ -37,7 +37,7 @@ Router.register('profile', () => {
           <div class="profile-avatar-lg" id="profile-avatar-preview" style="background:${currentGradient}">
             ${Auth.getInitials(user.displayName)}
           </div>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:12px">Choose Avatar Colour</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:12px">Choose Avatar Color</div>
           <div class="avatar-color-picker">${colorOptionsHtml}</div>
         </div>
         <form id="profile-form" onsubmit="Profile.save(event)">

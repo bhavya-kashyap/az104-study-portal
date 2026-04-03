@@ -59,12 +59,18 @@ const App = (() => {
       if (barEl) barEl.style.width = pct;
     };
 
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', () => {
-        Router.navigate(item.dataset.page);
-        closeSidebar();
+    // Use event delegation on the sidebar — safe to call initApp multiple times
+    const navEl = document.getElementById('sidebar');
+    if (navEl && !navEl._navDelegated) {
+      navEl._navDelegated = true;
+      navEl.addEventListener('click', e => {
+        const item = e.target.closest('.nav-item');
+        if (item && item.dataset.page) {
+          Router.navigate(item.dataset.page);
+          closeSidebar();
+        }
       });
-    });
+    }
 
     window.updateSidebarProgress();
     Router.navigate('dashboard');
@@ -259,7 +265,8 @@ const App = (() => {
   // ── Logout ───────────────────────────────────────────────────────
   function logout() {
     Auth.logout();
-    window.location.reload();
+    if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+    showLanding();
   }
 
   // ── Public API ───────────────────────────────────────────────────
