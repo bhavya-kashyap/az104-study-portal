@@ -3,19 +3,137 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AZ-104 Study Portal | Bhavya Kashyap</title>
+  <title>AZ-104 Study Portal</title>
   <link rel="stylesheet" href="assets/css/main.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
 </head>
 <body>
-<div id="app">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     LANDING SCREEN — shown to unauthenticated visitors
+════════════════════════════════════════════════════════════════════ -->
+<div id="landing-screen">
+
+  <!-- Landing nav -->
+  <nav class="lnav">
+    <div class="lnav-logo"><i class="fab fa-microsoft"></i><span>AZ-104 Study Portal</span></div>
+    <div class="lnav-right">
+      <span class="version-chip"><i class="fas fa-tag"></i> v2.0.0</span>
+      <button class="btn btn-outline btn-sm" onclick="App.showAuthModal('login')">Sign In</button>
+      <button class="btn btn-primary btn-sm" onclick="App.showAuthModal('register')">Get Started</button>
+    </div>
+  </nav>
+
+  <!-- Hero section -->
+  <section class="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><i class="fab fa-microsoft"></i> Azure Administrator Certification</div>
+      <h1 class="hero-heading">
+        Your Personal<br>
+        <span class="hero-gradient-text" id="hero-typewriter">AZ-104 Study Hub</span>
+      </h1>
+      <p class="hero-subtext">
+        A complete, interactive study portal to help you master the AZ-104 Azure Administrator exam.
+        Track your progress, take quizzes, and monitor your readiness — all in one place.
+      </p>
+      <div class="hero-cta-group">
+        <button class="btn btn-primary btn-lg" onclick="App.showAuthModal('register')">
+          <i class="fas fa-rocket"></i> Start Learning Free
+        </button>
+        <button class="btn btn-glass btn-lg" onclick="App.showAuthModal('login')">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stats-float">
+        <div class="hstat"><span class="hstat-num">5</span><span class="hstat-label">Domains</span></div>
+        <div class="hstat"><span class="hstat-num">200+</span><span class="hstat-label">Questions</span></div>
+        <div class="hstat"><span class="hstat-num">60</span><span class="hstat-label">Day Plan</span></div>
+        <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Practice Exams</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features section -->
+  <section class="features-section">
+    <div class="features-header">
+      <div class="section-eyebrow">Everything You Need</div>
+      <h2 class="section-heading">Built to help you pass AZ-104</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon blue"><i class="fas fa-book-open"></i></div>
+        <h3>Course Modules</h3>
+        <p>Structured study material across all 5 AZ-104 exam domains with exam-focused tips and key concepts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon teal"><i class="fas fa-question-circle"></i></div>
+        <h3>Daily Quizzes</h3>
+        <p>Reinforce your learning with domain-specific quizzes. Instant feedback with explanations for every answer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Practice Exams</h3>
+        <p>Full-length timed mock exams that simulate the real AZ-104 experience. Review answers in detail.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon yellow"><i class="fas fa-chart-line"></i></div>
+        <h3>Performance Tracking</h3>
+        <p>Track your progress across domains, view score trends, and get personalised recommendations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green"><i class="fas fa-calendar-alt"></i></div>
+        <h3>60-Day Study Plan</h3>
+        <p>A structured 60-day schedule that guides you through all exam topics with daily study sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon red"><i class="fas fa-bullseye"></i></div>
+        <h3>Exam Readiness Score</h3>
+        <p>Get a real-time readiness score with actionable advice based on your performance data.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <div class="footer-logo"><i class="fab fa-microsoft"></i> AZ-104 Study Portal</div>
+    <div class="footer-version">v2.0.0</div>
+    <div class="footer-text">A community study tool. Not affiliated with Microsoft Corporation.</div>
+  </footer>
+</div><!-- #landing-screen -->
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     AUTH MODAL — login / register
+════════════════════════════════════════════════════════════════════ -->
+<div id="auth-overlay" class="hidden">
+  <div id="auth-box" class="auth-box"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     APP — shown after authentication
+════════════════════════════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- Hamburger button (mobile) -->
+  <button id="hamburger-btn" class="hamburger-btn" onclick="App.toggleSidebar()" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Sidebar backdrop (mobile) -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop hidden" onclick="App.closeSidebar()"></div>
+
+  <!-- Sidebar -->
   <nav id="sidebar" class="sidebar">
     <div class="sidebar-header">
       <div class="logo"><i class="fab fa-microsoft"></i><span>AZ-104 Portal</span></div>
       <div class="user-info">
-        <div class="avatar">BK</div>
-        <div><div class="user-name">Bhavya Kashyap</div><div class="user-exam">Exam: June 2, 2026</div></div>
+        <div class="avatar" id="sidebar-avatar">?</div>
+        <div>
+          <div class="user-name" id="sidebar-name">User</div>
+          <div class="user-exam" id="sidebar-exam">Exam: —</div>
+        </div>
       </div>
       <div id="countdown-mini" class="countdown-mini"></div>
     </div>
@@ -28,19 +146,61 @@
       <li class="nav-item" data-page="performance"><i class="fas fa-chart-line"></i><span>Performance</span></li>
       <li class="nav-item" data-page="readiness"><i class="fas fa-bullseye"></i><span>Exam Readiness</span></li>
       <li class="nav-item" data-page="resources"><i class="fas fa-link"></i><span>Resources</span></li>
+      <li class="nav-item" data-page="profile"><i class="fas fa-user-cog"></i><span>My Profile</span></li>
     </ul>
     <div class="sidebar-progress">
       <div class="progress-label"><span>Course Progress</span><span id="sidebar-progress-pct">0%</span></div>
       <div class="progress-bar-wrap"><div class="progress-bar-fill" id="sidebar-progress-bar"></div></div>
     </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="App.logout()">
+        <i class="fas fa-sign-out-alt"></i><span>Sign Out</span>
+      </button>
+      <div class="version-badge">
+        <div class="version-current" onclick="App.toggleVersionDropdown()">
+          <i class="fas fa-tag"></i>
+          <span>v2.0.0</span>
+          <i class="fas fa-chevron-up" id="version-chevron"></i>
+        </div>
+        <div id="version-dropdown" class="version-dropdown hidden"></div>
+      </div>
+    </div>
   </nav>
+
+  <!-- Main content -->
   <main id="main-content" class="main-content">
     <div id="page-container"></div>
   </main>
-</div>
+
+  <!-- Bottom navigation (mobile ≤600px) -->
+  <nav id="bottom-nav" class="bottom-nav">
+    <button class="bnav-item active" data-page="dashboard" onclick="Router.navigate('dashboard')">
+      <i class="fas fa-tachometer-alt"></i><span>Home</span>
+    </button>
+    <button class="bnav-item" data-page="quiz" onclick="Router.navigate('quiz')">
+      <i class="fas fa-question-circle"></i><span>Quiz</span>
+    </button>
+    <button class="bnav-item" data-page="exam" onclick="Router.navigate('exam')">
+      <i class="fas fa-graduation-cap"></i><span>Exam</span>
+    </button>
+    <button class="bnav-item" data-page="performance" onclick="Router.navigate('performance')">
+      <i class="fas fa-chart-line"></i><span>Progress</span>
+    </button>
+    <button class="bnav-item" data-page="modules" onclick="Router.navigate('modules')">
+      <i class="fas fa-book-open"></i><span>Modules</span>
+    </button>
+  </nav>
+
+</div><!-- #app -->
+
+<!-- App-level modal (quiz / exam / schedule modals) -->
 <div id="modal-overlay" class="modal-overlay hidden">
   <div id="modal-box" class="modal-box"></div>
 </div>
+
+<!-- ═══ Scripts ═══ -->
+<script src="assets/js/core/config.js"></script>
+<script src="assets/js/core/auth.js"></script>
 <script src="assets/js/data/course-data.js"></script>
 <script src="assets/js/data/quiz-data.js"></script>
 <script src="assets/js/core/storage.js"></script>
@@ -53,6 +213,14 @@
 <script src="assets/js/pages/performance.js"></script>
 <script src="assets/js/pages/readiness.js"></script>
 <script src="assets/js/pages/resources.js"></script>
+<script src="assets/js/pages/profile.js"></script>
 <script src="assets/js/core/app.js"></script>
+<!-- Inline fix: version badge uses APP_CONFIG after scripts loaded -->
+<script>
+  (function(){
+    const el = document.querySelector('.version-current span');
+    if (el && window.APP_CONFIG) el.textContent = APP_CONFIG.VERSION;
+  })();
+</script>
 </body>
 </html>

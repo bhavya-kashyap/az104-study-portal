@@ -10,7 +10,9 @@ Router.register('readiness', () => {
     : 0;
 
   const today = new Date();
-  const examDate = new Date('2026-06-02');
+  const user = Auth.getUser();
+  const examDateStr = (user && user.examDate) ? user.examDate : '2026-06-02';
+  const examDate = new Date(examDateStr + 'T00:00:00');
   const daysLeft = Math.max(0, Math.ceil((examDate - today) / 86400000));
 
   // Readiness scoring algorithm (weighted)
@@ -121,7 +123,7 @@ Router.register('readiness', () => {
   return `<div class="fade-in">
     <div class="page-header">
       <div class="page-title"><i class="fas fa-bullseye blue"></i> Exam Readiness Report</div>
-      <div class="page-subtitle">Real-time analysis of your preparation for the AZ-104 exam on June 2, 2026</div>
+      <div class="page-subtitle">Real-time analysis of your preparation for the AZ-104 exam on ${new Date(examDateStr + 'T00:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
     </div>
 
     <div class="card mb-6 text-center">

@@ -1,4 +1,8 @@
 Router.register('schedule', () => {
+  const user = Auth.getUser();
+  const examDateDisplay = user && user.examDate
+    ? new Date(user.examDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    : 'June 2, 2026';
   const data = Store.get();
   const completed = data.completedDays || [];
   const today = new Date().toISOString().split('T')[0];
@@ -51,7 +55,7 @@ Router.register('schedule', () => {
   return `<div class="fade-in">
     <div class="page-header">
       <div class="page-title"><i class="fas fa-calendar-alt blue"></i> Study Schedule</div>
-      <div class="page-subtitle">60-Day Plan: Apr 3 → Jun 1, 2026 | Exam: June 2, 2026</div>
+      <div class="page-subtitle">60-Day Plan: Apr 3 → Jun 1, 2026 | Exam: ${examDateDisplay}</div>
     </div>
     <div class="alert alert-info"><i class="fas fa-info-circle"></i>
       <span><strong>Weekdays:</strong> 1.5 hrs study + 15-min quiz (≤2 hr total) &nbsp;|&nbsp;

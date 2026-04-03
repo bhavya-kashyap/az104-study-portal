@@ -3,13 +3,17 @@ const Router = (() => {
   const routes = {};
 
   return {
-    // Register a new page route
     register: (name, handler) => {
       routes[name] = handler;
     },
 
-    // Navigate to a page
     navigate: (pageName) => {
+      // Route guard: require auth
+      if (!Auth.getSession()) {
+        if (window.App) App.showLanding();
+        return;
+      }
+
       if (!routes[pageName]) {
         console.error(`Page not found: ${pageName}`);
         return;
@@ -23,12 +27,17 @@ const Router = (() => {
         }
       });
 
+      // Update bottom nav
+      if (window.App && App.updateBottomNav) App.updateBottomNav(pageName);
+
       // Render page content
       const container = document.getElementById('page-container');
       try {
         const html = routes[pageName]();
         container.innerHTML = html;
-        window.updateSidebarProgress();
+        if (window.updateSidebarProgress) window.updateSidebarProgress();
+        // Scroll to top on navigation
+        container.scrollIntoView({ block: 'start', behavior: 'instant' });
       } catch (e) {
         console.error(`Error rendering page ${pageName}:`, e);
         container.innerHTML = `<div class="card"><p style="color:var(--azure-red)">Error loading page. Check console.</p></div>`;
