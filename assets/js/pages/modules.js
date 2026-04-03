@@ -1,6 +1,6 @@
 Router.register('modules', () => {
+  const colorMap = { blue:'#0078d4', teal:'#00b294', purple:'#8764b8', yellow:'#ffaa44', green:'#107c10' };
   const domainHtml = COURSE_DATA.domains.map(d => {
-    const colorMap = { blue:'#0078d4', teal:'#00b294', purple:'#8764b8', yellow:'#ffaa44', green:'#107c10' };
     const col = colorMap[d.color] || '#0078d4';
     return `
     <div class="card mb-6">
@@ -24,9 +24,68 @@ Router.register('modules', () => {
       <span>Each section contains concise notes, key concepts, and <strong>exam-focused tips</strong>.
       Read a section, then take the daily quiz to reinforce your knowledge.</span>
     </div>
+    ${renderCloudShellModule()}
     ${domainHtml}
   </div>`;
 });
+
+function renderCloudShellModule() {
+  const units = [
+    { day: 1, title: 'Unit 1 — Introduction',          icon: 'fa-play-circle',    desc: 'Module overview, learning objectives, and why Cloud Shell matters for AZ-104.' },
+    { day: 2, title: 'Unit 2 — What is Azure Cloud Shell?', icon: 'fa-terminal',  desc: 'Core definition, Bash vs PowerShell, access points, persistent storage, and pre-installed tools.' },
+    { day: 3, title: 'Unit 3 — How Azure Cloud Shell Works', icon: 'fa-cogs',     desc: 'Architecture, authentication flow, storage setup (first launch), Monaco editor, Azure: drive, file transfers.' },
+    { day: 4, title: 'Unit 4 — When to Use Azure Cloud Shell', icon: 'fa-question-circle', desc: 'Decision framework, use-case scenarios, limitations, and comparison with local CLI.' },
+    { day: 5, title: 'Unit 5 — Knowledge Check',        icon: 'fa-check-square', desc: 'Official knowledge check questions plus additional AZ-104 practice questions with answer explanations.' },
+    { day: 6, title: 'Unit 6 — Summary',               icon: 'fa-flag-checkered', desc: 'Complete module recap, key concept reference table, decision guide, and next steps.' }
+  ];
+
+  const unitRows = units.map(u => {
+    const hasContent = window.STUDY_LESSONS && window.STUDY_LESSONS[u.day];
+    return `
+    <div style="border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:12px">
+      <div style="padding:14px 18px;background:var(--bg-input);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">
+          <div style="width:36px;height:36px;border-radius:50%;background:#0078d4;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fas ${u.icon}" style="color:#fff;font-size:14px"></i>
+          </div>
+          <div style="min-width:0">
+            <div style="font-weight:600;font-size:14px">${u.title}</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${u.desc}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
+          <span class="badge badge-blue" style="font-size:11px">Day ${u.day}</span>
+          ${hasContent
+            ? `<button class="btn btn-primary btn-sm" onclick="window._studyDay=${u.day};Router.navigate('study')">
+                <i class="fas fa-book-open"></i> Study</button>`
+            : `<span style="font-size:12px;color:var(--text-muted)">Loading...</span>`}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="card mb-6">
+    <div class="card-title" style="font-size:18px">
+      <i class="fas fa-terminal" style="color:#0078d4"></i>
+      Prerequisite: Introduction to Azure Cloud Shell
+      <span class="badge badge-blue" style="margin-left:auto">6 Units</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 16px">
+      The official Microsoft Learn prerequisite module for AZ-104. Complete all 6 units to master Azure Cloud Shell —
+      your primary tool for managing Azure resources throughout the exam preparation journey.
+    </p>
+    <div style="margin-bottom:16px;padding:12px 16px;background:var(--bg-input);border-radius:6px;border-left:4px solid #0078d4;font-size:13px">
+      <i class="fas fa-external-link-alt" style="color:#0078d4;margin-right:6px"></i>
+      <strong>Official module:</strong>
+      <a href="https://learn.microsoft.com/en-us/training/modules/intro-to-azure-cloud-shell/" target="_blank" rel="noopener" style="margin-left:4px">
+        learn.microsoft.com — Introduction to Azure Cloud Shell
+      </a>
+    </div>
+    ${unitRows}
+  </div>`;
+}
+
 
 function renderModuleSections(domainId, col) {
   const content = {
