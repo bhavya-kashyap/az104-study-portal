@@ -51,6 +51,10 @@ Router.register('profile', () => {
             <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Username cannot be changed</div>
           </div>
           <div class="form-field">
+            <label class="form-label">Study Start Date <span style="font-size:11px;color:var(--text-muted);font-weight:400">(day 1 of your 60-day plan)</span></label>
+            <input type="date" class="form-input" name="startDate" value="${user.startDate || new Date().toISOString().split('T')[0]}"/>
+          </div>
+          <div class="form-field">
             <label class="form-label">Target Exam Date</label>
             <input type="date" class="form-input" name="examDate" value="${user.examDate || '2026-06-02'}"/>
           </div>
@@ -125,6 +129,7 @@ window.Profile = {
     const form = e.target;
     const updates = {
       displayName: form.displayName.value.trim(),
+      startDate:   form.startDate.value,
       examDate:    form.examDate.value,
     };
     if (this._selectedColor) updates.avatarColor = this._selectedColor;

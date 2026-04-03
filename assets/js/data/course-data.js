@@ -1,6 +1,7 @@
 window.COURSE_DATA = {
-  startDate: '2026-04-03', examDate: '2026-06-02',
-  studentName: 'Bhavya Kashyap', totalDays: 60,
+  totalDays: 60,
+  studyDays: 50,
+  revisionDays: 10,
   domains: [
     { id:'D1', name:'Manage Azure Identities & Governance',    color:'blue',   icon:'fa-users-cog',     weight:'20-25%' },
     { id:'D2', name:'Implement & Manage Storage',              color:'teal',   icon:'fa-database',      weight:'15-20%' },
@@ -69,5 +70,21 @@ window.COURSE_DATA = {
     {day:58, date:'2026-05-30',dow:'Sat',type:'weekend',hours:3,  domain:'ALL',topic:'🎯 FULL MOCK EXAM 1 — 60 Questions All Domains',isExam:true},
     {day:59, date:'2026-05-31',dow:'Sun',type:'weekend',hours:3,  domain:'ALL',topic:'🎯 FULL MOCK EXAM 2 — 60 Questions All Domains',isExam:true},
     {day:60, date:'2026-06-01',dow:'Mon',type:'weekday',hours:1.5,domain:'ALL',topic:'✅ Final Review: Flash Cards, Rest Well. You Got This!',isExam:false},
-  ]
+  ],
+
+  // Returns the schedule with dates computed from the user's actual start date.
+  // Falls back to the hardcoded dates when startDate is not provided.
+  getSchedule(startDate) {
+    if (!startDate) return this.schedule;
+    const start = new Date(startDate + 'T00:00:00');
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return this.schedule.map(entry => {
+      const d = new Date(start);
+      d.setDate(start.getDate() + entry.day - 1);
+      const dow  = dayNames[d.getDay()];
+      const type = (d.getDay() === 0 || d.getDay() === 6) ? 'weekend' : 'weekday';
+      const date = d.toISOString().split('T')[0];
+      return Object.assign({}, entry, { date, dow, type });
+    });
+  }
 };

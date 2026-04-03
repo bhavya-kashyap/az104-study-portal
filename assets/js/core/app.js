@@ -137,6 +137,7 @@ const App = (() => {
   }
 
   function renderRegisterForm() {
+    const todayStr = new Date().toISOString().split('T')[0];
     return `
       <button class="auth-close" onclick="App.closeAuthModal()">&#10005;</button>
       <div class="auth-header">
@@ -157,6 +158,10 @@ const App = (() => {
         <div class="auth-field">
           <label>Password</label>
           <input type="password" name="password" placeholder="Min 6 characters" autocomplete="new-password" minlength="6" required/>
+        </div>
+        <div class="auth-field">
+          <label>Study Start Date <span style="color:var(--text-muted);font-weight:400">(day 1 of your 60-day plan)</span></label>
+          <input type="date" name="startDate" id="reg-startDate" value="${todayStr}"/>
         </div>
         <div class="auth-field">
           <label>Target Exam Date <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
@@ -195,7 +200,7 @@ const App = (() => {
     const errorEl   = document.getElementById('auth-error');
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account…';
-    const result = await Auth.register(form.username.value, form.password.value, form.displayName.value, form.examDate.value);
+    const result = await Auth.register(form.username.value, form.password.value, form.displayName.value, form.examDate.value, form.startDate.value);
     if (result.ok) {
       closeAuthModal();
       initApp();
