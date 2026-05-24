@@ -1,4 +1,4 @@
-{
+window.EXAMTOPICS_DATA = {
   "meta": {
     "source": "ExamTopics AZ-104 Microsoft Azure Administrator",
     "sourceUrl": "https://www.examtopics.com/exams/microsoft/az-104/",
@@ -316,4 +316,4 @@
       "discussion": []
     }
   ]
-}
+};
