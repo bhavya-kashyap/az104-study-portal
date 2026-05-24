@@ -25,6 +25,7 @@ Router.register('modules', () => {
       Read a section, then take the daily quiz to reinforce your knowledge.</span>
     </div>
     ${domainHtml}
+    ${renderExamTopicsCard()}
   </div>`;
 });
 
@@ -244,4 +245,111 @@ window.toggleSection = function(id) {
   const open = el.style.display === 'block';
   el.style.display = open ? 'none' : 'block';
   chev.style.transform = open ? '' : 'rotate(180deg)';
+};
+
+/* ─── ExamTopics Practice Questions card ─── */
+
+function renderExamTopicsCard() {
+  if (!window.EXAMTOPICS_DATA || !EXAMTOPICS_DATA.questions) return '';
+  const qs = EXAMTOPICS_DATA.questions;
+  const meta = EXAMTOPICS_DATA.meta;
+
+  const questionsHtml = qs.map((q, i) => {
+    const optLetters = ['A','B','C','D','E'];
+    const optionsHtml = q.options.map((opt, idx) =>
+      `<div class="et-option" id="et-opt-${q.id}-${idx}" style="padding:8px 12px;margin:4px 0;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:14px;cursor:default">
+        <strong>${optLetters[idx]}.</strong> ${opt}
+      </div>`
+    ).join('');
+
+    const noteHtml = q.note
+      ? `<div class="alert alert-info" style="margin-bottom:12px;font-size:13px"><i class="fas fa-info-circle"></i><span>${q.note}</span></div>`
+      : '';
+
+    const discussionHtml = (q.discussion && q.discussion.length > 0)
+      ? q.discussion.map(c => `<div style="padding:10px 12px;border-left:3px solid var(--border-light);margin-bottom:8px;font-size:13px;color:var(--text-secondary)">${c}</div>`).join('')
+      : `<p style="font-size:13px;color:var(--text-muted);font-style:italic">No community discussion yet.</p>`;
+
+    return `
+    <div style="margin-bottom:14px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
+      <div onclick="etToggleQuestion(${q.id})"
+        style="padding:13px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--bg-input);font-weight:600;font-size:14px">
+        <span>
+          <span class="badge badge-blue" style="margin-right:10px">Q${q.id}</span>
+          ${q.question.length > 90 ? q.question.substring(0,90) + '…' : q.question}
+        </span>
+        <i class="fas fa-chevron-down" id="et-chev-${q.id}" style="color:var(--text-muted);transition:transform .2s;flex-shrink:0;margin-left:12px"></i>
+      </div>
+      <div id="et-body-${q.id}" style="display:none;padding:20px 22px">
+        ${noteHtml}
+        <p style="font-size:14px;line-height:1.8;color:var(--text-primary);margin-bottom:16px">${q.question}</p>
+        <div id="et-opts-${q.id}">${optionsHtml}</div>
+        <div style="margin-top:14px">
+          <button class="btn btn-outline btn-sm" id="et-reveal-btn-${q.id}" onclick="etRevealAnswer(${q.id}, ${q.answerIndex}, '${q.answer}')">
+            <i class="fas fa-eye"></i> Reveal Answer
+          </button>
+        </div>
+        <div id="et-answer-${q.id}" style="display:none;margin-top:14px">
+          <div class="alert alert-success" style="margin-bottom:12px">
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Correct Answer: ${q.answer}</strong> &nbsp;|&nbsp; Community Vote: ${q.communityVote}</span>
+          </div>
+          <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i>
+            <span><strong>Explanation:</strong> ${q.explanation}</span>
+          </div>
+          <div style="margin-top:14px">
+            <div style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:8px"><i class="fas fa-comments" style="margin-right:6px"></i>Discussion</div>
+            ${discussionHtml}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="card mb-6">
+    <div class="card-title" style="font-size:18px">
+      <i class="fas fa-clipboard-list" style="color:#0078d4"></i>
+      ExamTopics Practice Questions
+      <span class="badge badge-blue" style="margin-left:auto">${qs.length} Questions</span>
+    </div>
+    <div class="alert alert-warning" style="margin-bottom:20px">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>These are real exam-style questions sourced from the community. Try to answer each question yourself before revealing the answer.</span>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px">
+      Source: ${meta.source} &nbsp;·&nbsp; Last updated: ${meta.lastUpdated} &nbsp;·&nbsp; ${meta.disclaimer}
+    </div>
+    ${questionsHtml}
+  </div>`;
+}
+
+window.etToggleQuestion = function(id) {
+  const body = document.getElementById('et-body-' + id);
+  const chev = document.getElementById('et-chev-' + id);
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(180deg)';
+};
+
+window.etRevealAnswer = function(qId, answerIndex, answerLetter) {
+  const optsContainer = document.getElementById('et-opts-' + qId);
+  if (optsContainer) {
+    const opts = optsContainer.querySelectorAll('.et-option');
+    opts.forEach((el, idx) => {
+      if (idx === answerIndex) {
+        el.style.background = 'rgba(16,124,16,.15)';
+        el.style.borderColor = 'var(--azure-green)';
+        el.style.color = '#4caf50';
+        el.style.fontWeight = '600';
+      } else {
+        el.style.opacity = '0.5';
+      }
+    });
+  }
+  const answerDiv = document.getElementById('et-answer-' + qId);
+  if (answerDiv) answerDiv.style.display = 'block';
+  const btn = document.getElementById('et-reveal-btn-' + qId);
+  if (btn) btn.style.display = 'none';
 };
