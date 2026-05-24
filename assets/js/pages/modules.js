@@ -325,6 +325,17 @@ function renderExamTopicsCard() {
   </div>`;
 }
 
+/* ─── Standalone ExamTopics page ─── */
+Router.register('examtopics', () => {
+  return `<div class="fade-in">
+    <div class="page-header">
+      <div class="page-title"><i class="fas fa-clipboard-list blue"></i> ExamTopics Q&amp;A</div>
+      <div class="page-subtitle">Real exam-style practice questions sourced from the community</div>
+    </div>
+    ${renderExamTopicsCard()}
+  </div>`;
+});
+
 window.etToggleQuestion = function(id) {
   const body = document.getElementById('et-body-' + id);
   const chev = document.getElementById('et-chev-' + id);
