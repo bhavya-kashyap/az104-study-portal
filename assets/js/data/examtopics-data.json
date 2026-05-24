@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "source": "ExamTopics AZ-104 Microsoft Azure Administrator",
+    "sourceUrl": "https://www.examtopics.com/exams/microsoft/az-104/",
+    "totalQuestionsAvailable": 606,
+    "lastUpdated": "2026-05-11",
+    "disclaimer": "Community study resource. Not affiliated with Microsoft Corporation or ExamTopics."
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": 1,
+      "question": "Your company has several departments. Each department has a number of virtual machines (VMs). The company has an Azure subscription that contains a resource group named RG1. All VMs are located in RG1. You want to associate each VM with its respective department. What should you do?",
+      "options": [
+        "Create Azure Management Groups for each department.",
+        "Create a resource group for each department.",
+        "Assign tags to the virtual machines.",
+        "Modify the settings of the virtual machines."
+      ],
+      "answer": "C",
+      "answerIndex": 2,
+      "communityVote": "C (98%)",
+      "explanation": "Tags are key-value pairs you can assign to Azure resources to logically organize and associate them with metadata such as department, environment, or cost centre. Assigning a 'Department' tag to each VM is the correct and most efficient approach without restructuring resource groups or management groups.",
+      "discussion": []
+    },
+    {
+      "id": 2,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company has an Azure Active Directory (Azure AD) subscription. You want to implement an Azure AD conditional access policy. The policy must be configured to require members of the Global Administrators group to use Multi-Factor Authentication and an Azure AD-joined device when they connect to Azure AD from untrusted locations. Solution: You access the multi-factor authentication page to alter the user settings. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (99%)",
+      "explanation": "Altering user settings on the legacy Multi-Factor Authentication page only configures per-user MFA — it does not create a Conditional Access policy. To require both MFA and an Azure AD-joined device from untrusted locations, you must configure a Conditional Access policy with the appropriate Grant controls in the Azure AD (Entra ID) portal.",
+      "discussion": []
+    },
+    {
+      "id": 3,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company has an Azure Active Directory (Azure AD) subscription. You want to implement an Azure AD conditional access policy. The policy must be configured to require members of the Global Administrators group to use Multi-Factor Authentication and an Azure AD-joined device when they connect to Azure AD from untrusted locations. Solution: You access the Azure portal to alter the session control of the Azure AD conditional access policy. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (92%)",
+      "explanation": "Session controls in Conditional Access manage things like sign-in frequency and persistent browser sessions — they do not allow you to require MFA or an Azure AD-joined device. Those requirements must be configured under Grant controls, not session controls.",
+      "discussion": []
+    },
+    {
+      "id": 4,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company has an Azure Active Directory (Azure AD) subscription. You want to implement an Azure AD conditional access policy. The policy must be configured to require members of the Global Administrators group to use Multi-Factor Authentication and an Azure AD-joined device when they connect to Azure AD from untrusted locations. Solution: You access the Azure portal to alter the grant control of the Azure AD conditional access policy. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "A",
+      "answerIndex": 0,
+      "communityVote": "A (76%)",
+      "explanation": "Grant controls in Conditional Access are where you specify access requirements such as requiring MFA and requiring a device to be Azure AD-joined or compliant. Configuring the Grant control of the Conditional Access policy is the correct solution to enforce both requirements.",
+      "discussion": []
+    },
+    {
+      "id": 5,
+      "topic": 1,
+      "question": "You are planning to deploy an Ubuntu Server virtual machine to your company's Azure subscription. You are required to implement a custom deployment that includes adding a particular trusted root certification authority (CA). Which of the following should you use to create the virtual machine?",
+      "options": [
+        "The New-AzureRmVm cmdlet.",
+        "The New-AzVM cmdlet.",
+        "The Create-AzVM cmdlet.",
+        "The az vm create command."
+      ],
+      "answer": "D",
+      "answerIndex": 3,
+      "communityVote": "D (96%)",
+      "explanation": "The `az vm create` command (Azure CLI) supports the `--custom-data` parameter, which passes a cloud-init script or configuration file to the VM during provisioning. This is the standard way to inject custom configurations — such as adding a trusted root CA — at VM creation time for Linux VMs. `Create-AzVM` does not exist, and the PowerShell cmdlets do not have direct cloud-init support.",
+      "discussion": []
+    },
+    {
+      "id": 6,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company makes use of Multi-Factor Authentication for when users are not in the office. The Per Authentication option has been configured as the usage model. After the acquisition of a smaller business and the addition of the new staff to Azure Active Directory (Azure AD), you are informed that these employees should also make use of Multi-Factor Authentication. To achieve this, the Per Enabled User setting must be set for the usage model. Solution: You reconfigure the existing usage model via the Azure portal. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (95%)",
+      "explanation": "The usage model (Per Authentication vs. Per Enabled User) of an existing Azure MFA provider cannot be changed after it has been created — the option is immutable. You would need to create a new MFA provider with the desired usage model. Reconfiguring via the portal does not accomplish this.",
+      "discussion": []
+    },
+    {
+      "id": 7,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company's Azure solution makes use of Multi-Factor Authentication for when users are not in the office. The Per Authentication option has been configured as the usage model. After the acquisition of a smaller business and the addition of the new staff to Azure Active Directory (Azure AD), you are informed that these employees should also make use of Multi-Factor Authentication. To achieve this, the Per Enabled User setting must be set for the usage model. Solution: You reconfigure the existing usage model via the Azure CLI. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (84%)",
+      "explanation": "Just like the portal, the Azure CLI cannot change the usage model of an existing MFA provider — the usage model is set at creation and is immutable. Using the CLI to reconfigure the existing provider does not meet the requirement.",
+      "discussion": []
+    },
+    {
+      "id": 8,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company's Azure solution makes use of Multi-Factor Authentication for when users are not in the office. The Per Authentication option has been configured as the usage model. After the acquisition of a smaller business and the addition of the new staff to Azure Active Directory (Azure AD), you are informed that these employees should also make use of Multi-Factor Authentication. To achieve this, the Per Enabled User setting must be set for the usage model. Solution: You create a new Multi-Factor Authentication provider with a backup from the existing Multi-Factor Authentication provider data. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (89%)",
+      "explanation": "Creating a new MFA provider and restoring a backup from the existing provider copies the old data but does not change the usage model — the new provider would still inherit the old configuration. The correct approach is to create a brand-new MFA provider explicitly set to the 'Per Enabled User' usage model.",
+      "discussion": []
+    },
+    {
+      "id": 9,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company has an Azure Active Directory (Azure AD) tenant named weyland.com that is configured for hybrid coexistence with the on-premises Active Directory domain. You have a server named DirSync1 that is configured as a DirSync server. You create a new user account in the on-premise Active Directory. You now need to replicate the user information to Azure AD immediately. Solution: You run the Start-ADSyncSyncCycle -PolicyType Initial PowerShell cmdlet. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (73%)",
+      "explanation": "The `-PolicyType Initial` parameter triggers a full synchronisation of all objects, which takes significantly longer and is not appropriate for immediately replicating a single new user. The correct cmdlet to immediately replicate changes (including a newly created user) is `Start-ADSyncSyncCycle -PolicyType Delta`, which syncs only objects that have changed since the last sync cycle.",
+      "discussion": []
+    },
+    {
+      "id": 10,
+      "topic": 1,
+      "note": "The question is included in a number of questions that depicts the identical set-up. However, every question has a distinctive result. Establish if the solution satisfies the requirements.",
+      "question": "Your company has an Azure Active Directory (Azure AD) tenant named weyland.com that is configured for hybrid coexistence with the on-premises Active Directory domain. You have a server named DirSync1 that is configured as a DirSync server. You create a new user account in the on-premise Active Directory. You now need to replicate the user information to Azure AD immediately. Solution: You use Active Directory Sites and Services to force replication of the Global Catalog on a domain controller. Does the solution meet the goal?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": "B",
+      "answerIndex": 1,
+      "communityVote": "B (100%)",
+      "explanation": "Active Directory Sites and Services forces replication between on-premises domain controllers — it has no effect on Azure AD Connect / DirSync synchronisation to Azure AD (Entra ID). To replicate a new user to Azure AD immediately, you must trigger an Azure AD Connect delta sync using `Start-ADSyncSyncCycle -PolicyType Delta`.",
+      "discussion": []
+    }
+  ]
+}
